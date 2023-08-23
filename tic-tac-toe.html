@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getComputerChoice() {
+            let computerChoice = Math.random()
+            if (computerChoice <= .33) {
+                return 'rock'
+            }
+
+            if (computerChoice > .33 && computerChoice <= .66) {
+                return 'paper'
+            }
+
+            if (computerChoice > .66) {
+                return 'scissors'
+            }
+        }
+
+        function getPlayerChoice() {
+            let playerChoice = prompt('What is your choice?')
+            playerChoice = playerChoice.toLowerCase()
+            while (playerChoice !== 'rock' && playerChoice !== 'paper' && playerChoice !== 'scissors') {
+                playerChoice = prompt('Try Again Dumbass')
+                playerChoice = playerChoice.toLowerCase()
+            }
+
+            return playerChoice
+
+        }
+
+        function playRound(playerPick, computerPick) {
+            let playerChoice = getPlayerChoice()
+            
+            let computerChoice = getComputerChoice()
+            console.log('Computer chose ' + computerChoice)
+
+            if (playerChoice === computerChoice) {
+                return "It's a tie"
+            }
+
+            if (playerChoice === 'rock' && computerChoice === 'paper') {
+                return "You lose"
+            }
+
+            if (playerChoice === 'rock' && computerChoice === 'scissors') {
+                return "You win"
+            }
+
+            if (playerChoice === 'paper' && computerChoice === 'scissors') {
+                return "You lose"
+            }
+
+            if (playerChoice === 'paper' && computerChoice === 'rock') {
+                return "You win"
+            }
+
+            if (playerChoice === 'scissors' && computerChoice === 'rock') {
+                return "You lose"
+            }
+
+            if (playerChoice === 'scissors' && computerChoice === 'paper') {
+                return "You win"
+            }
+        }
+
+        function game() {
+            let playerScore = 0
+            let computerScore = 0
+            let ties = 0
+            let counter = 0
+
+            while (counter < 5) {
+                let result = playRound()
+                counter = counter + 1
+                if (result === 'You win'){
+                    playerScore = playerScore + 1}
+                if (result === 'You lose'){
+                    computerScore = computerScore + 1}
+                if (result === "It's a tie"){
+                    ties = ties + 1}
+            }
+            console.log('Your score is ' + playerScore, 'Computer score is ' + computerScore, 'Total ties ' + ties)
+        }
+
+
+        game()
+
+
+
+    </script>
+</body>
+
+</html>
